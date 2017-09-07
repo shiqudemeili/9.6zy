@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            list-style: none;
+        }
+        li{
+            width: 150px;
+            height: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        .img0{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 0px;
+        }
+        .img1{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: -60px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <img class="img0" src="../../images/2.jpg" alt="">
+    </li>
+    <li>
+        <img class="img1" src="../../images/2.jpg" alt="">
+    </li>
+</ul>
+</body>
+</html>
+<script>
+    oImg=document.getElementsByTagName("img");
+    var i=1
+   /* setInterval(function () {
+            i+=1
+            oImg[0].style.top=-i+"px"
+       /!*     oImg[1].style.bottom=-i+"px"*!/
+    },100)*/
+   var timer=null;
+    oImg[0].onmouseover=function () {
+       clearInterval(timer);
+       timer= setInterval(function () {
+            if(i<=-60){
+                clearInterval(timer)
+            }else {
+                i-=1;
+                oImg[0].style.top=i+"px";
+                oImg[1].style.top=i-60+"px"
+            }
+        },10)
+    };
+    oImg[0].onmouseout=oImg[1].onmouseout=function () {
+        clearInterval(timer);
+    }
+    oImg[1].onmouseover=function () {
+        clearInterval(timer);
+        timer= setInterval(function () {
+            if(i>=0){
+                clearInterval(timer)
+            }else {
+                i++;
+                oImg[0].style.top=i+"px";
+                oImg[1].style.top=i-60+"px"
+            }
+
+        },10)
+    }
+</script>
